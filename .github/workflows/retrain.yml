@@ -41,13 +41,14 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build Docker Image via MLflow
+      shell: micromamba-shell {0}
       run: |
         cd MLProject
-        # Ambil path model terbaru secara dinamis
         RUN_ID=$(ls -t mlruns/0 | head -n 1)
         mlflow models build-docker -m mlruns/0/$RUN_ID/artifacts/model -n telco-churn-model
 
     - name: Push Docker Image
+      shell: micromamba-shell {0}
       run: |
         docker tag telco-churn-model ${{ secrets.DOCKERHUB_USERNAME }}/telco-churn-model:latest
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/telco-churn-model:latest
