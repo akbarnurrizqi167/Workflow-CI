@@ -20,17 +20,12 @@ X_tr, X_val, y_tr, y_val = train_test_split(X_train, y_train, test_size=0.2, str
 
 # Mulai MLflow experiment
 with mlflow.start_run() as run:
-    model = RandomForestClassifier(n_estimators=100, max_depth=10, random_state=42)
+    model = RandomForestClassifier(n_estimators=100, random_state=42)
     model.fit(X_tr, y_tr)
 
     y_pred = model.predict(X_val)
     acc = accuracy_score(y_val, y_pred)
     print(f"Validation Accuracy: {acc:.4f}")
 
-    # Simpan model eksplisit (untuk docker build)
-    mlflow.sklearn.log_model(model, artifact_path="model")
-
-    # Optional: log metric secara manual
-    mlflow.log_metric("val_accuracy", acc)
-
-    print(f"Model logged under run ID: {run.info.run_id}")
+    # Explicit log model to ensure it's saved at 'artifacts/model'
+    mlflow.sklearn.log_model(model, "model")
