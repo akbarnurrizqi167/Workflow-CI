@@ -5,9 +5,7 @@ channels:
 dependencies:
   - python=3.10
   - pip
-  - scikit-learn
-  - pandas
-  - numpy
   - pip:
+      - pandas
+      - scikit-learn
       - mlflow
-git rebase --abort
