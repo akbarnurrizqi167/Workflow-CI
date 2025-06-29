@@ -1,5 +1,0 @@
-__pycache__/
-*.pyc
-mlruns/
-train.csv
-test.csv
