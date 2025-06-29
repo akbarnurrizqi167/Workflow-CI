@@ -45,7 +45,9 @@ jobs:
       run: |
         cd MLProject
         RUN_ID=$(ls -t mlruns/0 | head -n 1)
+        echo "Detected latest RUN_ID: $RUN_ID"
         mlflow models build-docker -m mlruns/0/$RUN_ID/artifacts/model -n telco-churn-model
+
 
     - name: Push Docker Image
       shell: micromamba-shell {0}
