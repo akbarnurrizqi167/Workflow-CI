@@ -18,14 +18,12 @@ y_train = train_df["Churn"]
 # Untuk validasi internal (optional), bisa gunakan sebagian dari train_df
 X_tr, X_val, y_tr, y_val = train_test_split(X_train, y_train, test_size=0.2, stratify=y_train, random_state=42)
 
-# Mulai MLflow experiment
-with mlflow.start_run() as run:
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X_tr, y_tr)
+# Buat model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
 
+# Jalankan experiment MLflow
+with mlflow.start_run():
+    model.fit(X_tr, y_tr)
     y_pred = model.predict(X_val)
     acc = accuracy_score(y_val, y_pred)
     print(f"Validation Accuracy: {acc:.4f}")
-
-    # Explicit log model to ensure it's saved at 'artifacts/model'
-    mlflow.sklearn.log_model(model, "model")
