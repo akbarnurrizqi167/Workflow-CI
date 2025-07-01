@@ -50,6 +50,3 @@ Repositori ini merupakan bagian dari submission Proyek Akhir pada kelas **Memban
 
 Proyek ini telah berhasil membangun sistem CI untuk pelatihan model ML berbasis MLflow yang dapat dijalankan secara otomatis melalui GitHub Actions. Struktur yang rapi dan standar penulisan yang baik memudahkan pengembangan dan pelacakan eksperimen. Repositori ini menjadi dasar kuat untuk pengembangan lebih lanjut dengan integrasi Docker dan CD.
 
----
-
-Jika kamu ingin saya bantu membuat versi **Docker-ready**, menambahkan badge status CI, atau menggabungkan dengan **Continuous Deployment**, tinggal beri tahu saja!
